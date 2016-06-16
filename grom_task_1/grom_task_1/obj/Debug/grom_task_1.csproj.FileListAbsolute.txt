@@ -1,9 +1,0 @@
-D:\Documents\GitHub\Grom_task_1\grom_task_1\grom_task_1\bin\Debug\grom_task_1.exe.config
-D:\Documents\GitHub\Grom_task_1\grom_task_1\grom_task_1\obj\Debug\grom_task_1.csprojResolveAssemblyReference.cache
-D:\Documents\GitHub\Grom_task_1\grom_task_1\grom_task_1\obj\Debug\grom_task_1.Form1.resources
-D:\Documents\GitHub\Grom_task_1\grom_task_1\grom_task_1\obj\Debug\grom_task_1.Properties.Resources.resources
-D:\Documents\GitHub\Grom_task_1\grom_task_1\grom_task_1\obj\Debug\grom_task_1.csproj.GenerateResource.Cache
-D:\Documents\GitHub\Grom_task_1\grom_task_1\grom_task_1\bin\Debug\grom_task_1.exe
-D:\Documents\GitHub\Grom_task_1\grom_task_1\grom_task_1\bin\Debug\grom_task_1.pdb
-D:\Documents\GitHub\Grom_task_1\grom_task_1\grom_task_1\obj\Debug\grom_task_1.exe
-D:\Documents\GitHub\Grom_task_1\grom_task_1\grom_task_1\obj\Debug\grom_task_1.pdb
