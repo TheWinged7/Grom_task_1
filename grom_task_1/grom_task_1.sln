@@ -5,6 +5,11 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "grom_task_1", "grom_task_1\grom_task_1.csproj", "{A541CB3F-1FA2-43EF-BFA2-B763962F8AF1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C7912BD-E11A-4794-8D20-149ADE8846EA}"
+	ProjectSection(SolutionItems) = preProject
+		grom_task_1\animation.cs = grom_task_1\animation.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

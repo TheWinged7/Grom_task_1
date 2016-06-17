@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="animation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +64,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -76,6 +78,72 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\Coin_1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
