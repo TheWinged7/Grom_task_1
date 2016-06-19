@@ -11,6 +11,10 @@ public class animation
         currentFrame = 0;
 	}
 
+
+  public int getCurrentFrame ()
+    { return currentFrame; }
+
     public Image getNextImage()
     {
         currentFrame++;

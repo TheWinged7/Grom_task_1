@@ -1,4 +1,6 @@
-﻿namespace grom_task_1
+﻿using System;
+
+namespace grom_task_1
 {
     partial class Form1
     {
@@ -37,6 +39,7 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 64;
             this.timer1.Tick += new System.EventHandler(this.timer_Tick);
+           // this.timer1.
             // 
             // Form1
             // 
@@ -51,7 +54,11 @@
         }
 
         #endregion
-
+        public void restartTimer ()
+        {
+            timer1.Start();
+            Console.WriteLine(timer1.Enabled);
+        }
         private System.Windows.Forms.Timer timer1;
     }
 }
