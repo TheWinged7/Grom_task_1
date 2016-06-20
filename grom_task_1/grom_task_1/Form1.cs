@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,10 @@ namespace grom_task_1
         int flips;
         int[] results = new int[2] { 0, 0 };
         Image currentFrame;
-        bool stopIt = false;
-        bool getframe = true;
+        Image heads;
+        Image tails;
+        bool finishFlipping = false;
+        bool getNextFrame = true;
         int result;
 
       
@@ -67,6 +70,9 @@ namespace grom_task_1
                 }
             );
 
+            heads = Properties.Resources.Coin_1;
+            tails = Properties.Resources.Coin_6;
+
             currentFrame = An.getNextImage();
 
             fliptimer = new System.Timers.Timer();
@@ -76,7 +82,9 @@ namespace grom_task_1
             flips = seed.Next(1,11);
 
             fliptimer.Start();
-                
+
+           
+            
         }
 
 
@@ -86,20 +94,25 @@ namespace grom_task_1
            switch (result)
            {
                case 0:
-                   if (An.getCurrentFrame()==0)
+                   if (An.getCurrentFrame()==0 &&flips>0)
                    {
-                       stopIt = false;
-                       getframe = false;
+                       finishFlipping = false;
+                       getNextFrame = false;
                        flips--;
+                       Invalidate(new Rectangle(90, 120, 30, 30));
+                       Invalidate(new Rectangle(380, 250, 30, 30));
                    }
                    break;
 
                case 1:
-                   if (An.getCurrentFrame() == 5 )
+                   if (An.getCurrentFrame() == 5 && flips > 0)
                    {
-                       stopIt = false;
-                       getframe = false;
+                       finishFlipping = false;
+                       getNextFrame = false;
                        flips--;
+                       Invalidate(new Rectangle(90, 330, 30, 30));
+                       Invalidate(new Rectangle(380, 250, 30, 30));
+
                    }
                    break;
 
@@ -108,6 +121,7 @@ namespace grom_task_1
                    break;
            }
 
+         
 
         }
 
@@ -115,35 +129,50 @@ namespace grom_task_1
         {
             Graphics g = args.Graphics;
 
-            g.DrawImage(currentFrame, Width / 2 - 45, Height / 2 - 45, 90, 90);
+            g.DrawImage(currentFrame, Width / 2 - 45, Height / 2 - 90, 90, 90);
+
+        
+            g.DrawImage(heads, 30, 20, 90, 90);
+            g.DrawString("Heads:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(20, 120));
+            g.DrawString(results[0].ToString(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(90, 120));
+
+            g.DrawImage(tails, 30, 230, 90, 90);
+            g.DrawString("Tails:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(20, 330));
+            g.DrawString(results[1].ToString(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(90, 330));
+
+            g.DrawString("Flips Remaining:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(200, 250));
+            g.DrawString(flips.ToString(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(380, 250));
+
+            
         }
         
          private void fliptimer_elapsed(object sender, EventArgs e)
         {
          //   Console.WriteLine("I Fired!\t" + fliptimer.Interval);
 
-             if (getframe)
+             if (getNextFrame)
              {
-                 stopIt = true;
+                 finishFlipping = true;
                  result = seed.Next(0, 2);
                  results[result]++;
                  finishFlip();
              }
              else
              {
-                 getframe = true;
+                 getNextFrame = true;
              }
         }
              
              private void timer_Tick(object sender, EventArgs e)
         {
-            Invalidate(new Rectangle(Width / 2 - 45, Height / 2 - 45, 90, 90) );
+            Invalidate(new Rectangle(Width / 2 - 45, Height / 2 - 90, 90, 90) );
+
             if (flips > 0) {
-                if (getframe)
+                if (getNextFrame)
                 {
                     currentFrame = An.getNextImage();
                 }
-                if (stopIt)
+                if (finishFlipping)
                 {
                     finishFlip();
                 }
