@@ -15,7 +15,8 @@ namespace grom_task_1
     public partial class Form1 : Form
     {
 
-        private CoinFlipper cf = new CoinFlipper();
+        private CoinFlipper cf;
+        private PongSim ps;
 
         Timer timer;
 
@@ -52,7 +53,18 @@ namespace grom_task_1
             timer.Tick += new EventHandler(timer_Tick);
 
             //replace this with the random selecting of task resulting in coin, matrix, or pong being true
-            coin = true;
+           // coin = true;
+            coin = false;
+            pong = true;
+
+            if (coin)
+            { 
+                cf = new CoinFlipper();
+            }
+            else if (pong)
+            {
+                ps = new PongSim(Width, Height);
+            }
         }
 
         private void Form1_Paint(object sender, System.Windows.Forms.PaintEventArgs args)
@@ -63,8 +75,12 @@ namespace grom_task_1
             g.Clear(background);
 
             if (coin)
-            { 
-                drawCoin(g); 
+            {
+                cf.drawFrame(g, Width, Height);
+            }
+            else if (pong)
+            {
+                ps.drawFrame(g, Width, Height);
             }
             
 
@@ -72,42 +88,16 @@ namespace grom_task_1
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            cf.onTick();
+            if (coin)
+            {
+                cf.onTick();
+                Invalidate(new Rectangle(0, 0, Width, Height) );
 
-            Invalidate(new Rectangle(Width / 2 - 45, Height / 2 - 90, 90, 90));
-
-            Invalidate(new Rectangle(0, Height / 2 - 20, 150, Height));
-            Invalidate(new Rectangle(0, 0, 150, Height / 2 - 20));
-            Invalidate(new Rectangle(380, 250, 30, 30));
-            
+            }
 
         }
 
 
-        private void drawCoin(Graphics g)
-        {
-
-            g.DrawImage(cf.getCurrentFrame(), Width / 2 - 45, Height / 2 - 90, 90, 90);
-
-            g.FillRectangle(new SolidBrush(cf.getHeadsGlow()), new Rectangle(0, 0, 150, Height / 2 - 20));
-            g.FillRectangle(new SolidBrush(cf.getTailsGlow()), new Rectangle(0, Height / 2 - 20, 150, Height));
-
-            g.DrawImage(heads, 30, 20, 90, 90);
-            g.DrawString("Heads:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(20, 120));
-            g.DrawString(cf.getHeads(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(90, 120));
-
-            g.DrawImage(tails, 30, Height / 2, 90, 90);
-            g.DrawString("Tails:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(20, Height / 2 + 100));
-            g.DrawString(cf.getTails(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(90, Height / 2 + 100));
-
-            g.DrawString("Flips Remaining:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(200, 250));
-            g.DrawString(cf.getFlipsLeft(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(380, 250));
-
-            g.FillRectangle(new SolidBrush(cf.getHeadsFade()), new Rectangle(0, 0, 150, Height / 2 - 20));
-            g.FillRectangle(new SolidBrush(cf.getTailsFade()), new Rectangle(0, Height / 2 - 20, 150, Height));
-
-            g.DrawLine(new Pen(Color.Black, 4), 150, 0, 150, Height);
-            g.DrawLine(new Pen(Color.Black, 4), 0, Height / 2 - 20, 150, Height / 2 - 20);
-        }
+       
     }
 }

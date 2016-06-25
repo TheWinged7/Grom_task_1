@@ -135,8 +135,35 @@ namespace grom_task_1
             tailsFade = Color.FromArgb(tailsFadeAlpha, 30, 30, 30);
 
 
+
         }
 
+
+        public void drawFrame(Graphics g, int width, int height)
+        {
+
+            g.DrawImage(currentFrame, width / 2 - 45, height / 2 - 90, 90, 90);
+
+            g.FillRectangle(new SolidBrush(headsGlow), new Rectangle(0, 0, 150, height / 2 - 20));
+            g.FillRectangle(new SolidBrush(tailsGlow), new Rectangle(0, height / 2 - 20, 150, height));
+
+            g.DrawImage(Properties.Resources.Coin_1, 30, 20, 90, 90);
+            g.DrawString("Heads:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(20, 120));
+            g.DrawString(getHeads(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(90, 120));
+
+            g.DrawImage(Properties.Resources.Coin_6, 30, height / 2, 90, 90);
+            g.DrawString("Tails:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(20, height / 2 + 100));
+            g.DrawString(getTails(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(90, height / 2 + 100));
+
+            g.DrawString("Flips Remaining:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(200, 250));
+            g.DrawString(getFlipsLeft(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(380, 250));
+
+            g.FillRectangle(new SolidBrush(headsFade), new Rectangle(0, 0, 150, height / 2 - 20));
+            g.FillRectangle(new SolidBrush(tailsFade), new Rectangle(0, height / 2 - 20, 150, height));
+
+            g.DrawLine(new Pen(Color.Black, 4), 150, 0, 150, height);
+            g.DrawLine(new Pen(Color.Black, 4), 0, height / 2 - 20, 150, height / 2 - 20);
+        }
 
         private void fliptimer_elapsed(object sender, EventArgs e)
         {
