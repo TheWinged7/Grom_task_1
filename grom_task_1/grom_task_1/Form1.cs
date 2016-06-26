@@ -25,10 +25,11 @@ namespace grom_task_1
         Image heads;
         Image tails;
 
-        bool coin;
-        bool pong;
-        bool matrix;
+        bool coin = false;
+        bool pong = false;
+        bool matrix = false;
 
+        Random seed = new Random();
         public Form1()
         {
             InitializeComponent();
@@ -54,8 +55,20 @@ namespace grom_task_1
 
             //replace this with the random selecting of task resulting in coin, matrix, or pong being true
            // coin = true;
-            coin = false;
-            pong = true;
+            int game = seed.Next(0, 3);
+
+            switch( game)
+            {
+                case 0:
+                    coin = true;
+                    break;
+                case 1:
+                    pong = true;
+                    break;
+                default:
+                    Console.WriteLine("well fuck");
+                    break;
+            }
 
             if (coin)
             { 
@@ -80,7 +93,7 @@ namespace grom_task_1
             }
             else if (pong)
             {
-                ps.drawFrame(g, Width, Height);
+                ps.drawFrame(g);
             }
             
 
@@ -93,6 +106,11 @@ namespace grom_task_1
                 cf.onTick();
                 Invalidate(new Rectangle(0, 0, Width, Height) );
 
+            }
+            if (pong)
+            {
+                ps.onTick();
+                Invalidate(new Rectangle(0, 0, Width, Height));
             }
 
         }
