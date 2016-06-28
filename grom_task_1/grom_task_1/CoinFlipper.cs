@@ -71,7 +71,6 @@ namespace grom_task_1
 
             fliptimer.Start();
 
-            Console.WriteLine("i flip coins");
 
         }
 
@@ -155,8 +154,8 @@ namespace grom_task_1
             g.DrawString("Tails:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(20, height / 2 + 100));
             g.DrawString(getTails(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(90, height / 2 + 100));
 
-            g.DrawString("Flips Remaining:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(200, 250));
-            g.DrawString(getFlipsLeft(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(380, 250));
+            g.DrawString("Flips Remaining:", new Font("Georgia", 16), new SolidBrush(Color.Black), new Point(width/3, (height/5)*3 ));
+            g.DrawString(getFlipsLeft(), new Font("Georgia", 16), new SolidBrush(Color.Black), new Point((width / 3) * 2, (height / 5) * 3));
 
             g.FillRectangle(new SolidBrush(headsFade), new Rectangle(0, 0, 150, height / 2 - 20));
             g.FillRectangle(new SolidBrush(tailsFade), new Rectangle(0, height / 2 - 20, 150, height));
@@ -167,7 +166,6 @@ namespace grom_task_1
 
         private void fliptimer_elapsed(object sender, EventArgs e)
         {
-            //   Console.WriteLine("I Fired!\t" + fliptimer.Interval);
 
             if (retrieveNextFrame)
             {

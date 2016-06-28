@@ -17,6 +17,7 @@ namespace grom_task_1
 
         private CoinFlipper cf;
         private PongSim ps;
+        private MatrixSim mx;
 
         Timer timer;
 
@@ -42,6 +43,9 @@ namespace grom_task_1
                 ControlStyles.AllPaintingInWmPaint | ControlStyles.SupportsTransparentBackColor,
                 true);
 
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+
             G = this.CreateGraphics();
 
             this.Paint += Form1_Paint;
@@ -53,8 +57,7 @@ namespace grom_task_1
             timer.Interval = 33;
             timer.Tick += new EventHandler(timer_Tick);
 
-            //replace this with the random selecting of task resulting in coin, matrix, or pong being true
-           // coin = true;
+           
             int game = seed.Next(0, 3);
 
             switch( game)
@@ -64,6 +67,9 @@ namespace grom_task_1
                     break;
                 case 1:
                     pong = true;
+                    break;
+                case 2:
+                    matrix = true;
                     break;
                 default:
                     Console.WriteLine("well fuck");
@@ -76,7 +82,13 @@ namespace grom_task_1
             }
             else if (pong)
             {
+                
                 ps = new PongSim(Width, Height);
+            }
+            else if (matrix)
+            {
+                mx = new MatrixSim(Width, Height);
+                timer.Interval = 66;
             }
         }
 
@@ -91,9 +103,13 @@ namespace grom_task_1
             {
                 cf.drawFrame(g, Width, Height);
             }
-            else if (pong)
+            if (pong)
             {
                 ps.drawFrame(g);
+            }
+            if (matrix)
+            {
+                mx.drawFrame(g);
             }
             
 
@@ -101,16 +117,20 @@ namespace grom_task_1
 
         private void timer_Tick(object sender, EventArgs e)
         {
+                Invalidate(new Rectangle(0, 0, Width, Height));
+
             if (coin)
             {
                 cf.onTick();
-                Invalidate(new Rectangle(0, 0, Width, Height) );
 
             }
             if (pong)
             {
                 ps.onTick();
-                Invalidate(new Rectangle(0, 0, Width, Height));
+            }
+            if (matrix)
+            {
+                mx.onTick();
             }
 
         }

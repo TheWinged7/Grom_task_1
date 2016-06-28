@@ -24,8 +24,9 @@ namespace grom_task_1
         private int xVelocity ;
         private int yVelocity ;
         private Random seed = new Random();
-        private bool alerted = false;
 
+
+        private int nextPos;
         public PongSim(int w, int h)
         {
             leftY = h / 2;
@@ -34,13 +35,15 @@ namespace grom_task_1
             height = h;
             ballPos = new int[2] { w / 2 - 5, h / 2 - 5 };
             scores = new int[2] { 0, 0 };
-
             setVelocity();
+
+
+            nextPos = seed.Next(0, height - 80);
+
 
 
             ball = new Rectangle(ballPos[0], ballPos[1] , 10,10 );
             leftPaddle = new Rectangle(20, h/2 -25, 10, 50 );
-            //rightPaddle = new Rectangle(w - 50, h / 2 +7, 10, 50);
 
             rightPaddle = new Rectangle(w - 50, h / 2 - 25, 10, 50);
 
@@ -79,8 +82,10 @@ namespace grom_task_1
                     g.DrawString("Player 1 Wins!", new Font("Georgia", 30), new SolidBrush(Color.White),
                         new Point(width / 2 - 130, height / 2 - 100));
 
+                    
+
                 }
-            if (scores[1] == 1)
+            if (scores[1] == 10)
             {
                 xVelocity = 0;
                 yVelocity = 0;
@@ -88,6 +93,8 @@ namespace grom_task_1
                 g.DrawString("Player 2 Wins!", new Font("Georgia", 30), new SolidBrush(Color.White),
                    new Point(width / 2 - 130, height / 2 - 100));
 
+                    g.DrawString("I can't win,\nthe other guy cheats D:", new Font("Georgia", 15), new SolidBrush(Color.White),
+                                new Point(40, height / 2 + 100));
                
             }
         }
@@ -110,20 +117,37 @@ namespace grom_task_1
                 rightPaddle.Y = 0;
             }
 
-            leftPaddle.Y = rightPaddle.Y +50;
+
+
+
+            if (leftPaddle.Y > nextPos && scores[1] != 10)
+            {
+                leftPaddle.Y-=3;
+            }
+             if (leftPaddle.Y < nextPos && scores[1] != 10)
+            {
+                leftPaddle.Y+=3;
+
+            }
+             if (leftPaddle.Y  - nextPos <=3  && leftPaddle.Y  - nextPos >=0 )
+            {
+                nextPos= seed.Next(0, height-80);
+            }
+           
+
+
+  
             if (leftPaddle.Y >height -80)
             {
                 leftPaddle.Y = height-80;
+                nextPos = seed.Next(0, height - 80);
+
+            }
+            if (leftPaddle.Y <0)
+            {
+                leftPaddle.Y = 0;
             }
 
-            if (scores[1] ==1 && !alerted)
-            {
-                alerted = true;
-                
-                    MessageBox.Show("I can't win, the other guy cheats :(", "Player 1",
-                    MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-               
-            }
            
         }
 
@@ -136,6 +160,8 @@ namespace grom_task_1
                 ball.Y = ballPos[1];
                 scores[0]++;
 
+                leftPaddle.Y = height / 2 - 25;
+                rightPaddle.Y = height / 2 - 25;
             }
             if ( ball.X <=5)
             {
@@ -144,6 +170,9 @@ namespace grom_task_1
                 ball.X = ballPos[0];
                 ball.Y = ballPos[1];
                 scores[1]++;
+
+                leftPaddle.Y = height / 2 - 25;
+                rightPaddle.Y = height / 2 - 25;
 
             }
 

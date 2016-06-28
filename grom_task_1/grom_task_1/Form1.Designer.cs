@@ -50,6 +50,7 @@ namespace grom_task_1
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.MinimumSize = new System.Drawing.Size(588, 397);
 
         }
 

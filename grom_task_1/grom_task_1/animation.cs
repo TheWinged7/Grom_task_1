@@ -22,6 +22,6 @@ public class animation
         {
             currentFrame = 0;
         }
-        return frames[currentFrame]; //replace later with actual return
+        return frames[currentFrame]; 
     }
 }

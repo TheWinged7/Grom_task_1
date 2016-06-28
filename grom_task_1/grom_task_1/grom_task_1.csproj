@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="animation.cs" />
+    <Compile Include="MatrixSim.cs" />
     <Compile Include="PongSim.cs" />
     <Compile Include="CoinFlipper.cs" />
     <Compile Include="Form1.cs">
